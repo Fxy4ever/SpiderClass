@@ -107,5 +107,22 @@ public class Analyze {
             e.printStackTrace();
         }
     }
+    public static void WriteInTxt(String info){
+        try {
+
+                File file = new File("/Users/mac/Documents/学生照片/学生信息.txt");
+                if(file.exists()){
+                    FileWriter fw = new FileWriter(file,false);
+                    BufferedWriter bw = new BufferedWriter(fw);
+                    bw.write(info);
+                    bw.close(); fw.close();
+                    System.out.println("successfully!");
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
 }
+
