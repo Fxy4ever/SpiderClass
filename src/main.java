@@ -31,6 +31,7 @@ public class main {
             }
         }
         String URL = "http://jwzx.cqupt.edu.cn/jwzxtmp/showBjStu.php?bj=";
+        List<String> stuInfo;
         for(int h = 0 ; h <classUid2.size();h++){
             String allInfo = Analyze.getNetResults(URL,classUid2.get(h));
             List<String>  Infolist = Analyze.ToRegexHtml(allInfo,"<tr>","</tr>",2);
@@ -38,8 +39,17 @@ public class main {
                 Infolist.remove(0);//去除第一排的类型名字
                 List<String>  imglist  = Analyze.ToRegexNormal(allInfo,"http://([\\w-]+\\.)+[\\w-]+(/[\\w- ./?%&=]*)?");
                 for(int i = 0; i < Infolist.size();i++){
-                    System.out.println(Analyze.ToRegexHtml(Infolist.get(i),"<td>","</td>",2)+imglist.get(i));
-                    Analyze.loadImage(imglist.get(i));
+
+                    System.out.println(imglist.get(i) +
+                                    Analyze.ToRegexHtml(Infolist.get(i),"<td>","</td>",2).get(2)+" "+
+                                    Analyze.ToRegexHtml(Infolist.get(i),"<td>","</td>",2).get(3)+" "+
+                                    Analyze.ToRegexHtml(Infolist.get(i),"<td>","</td>",2).get(6));
+
+                    Analyze.loadImage(imglist.get(i) ,imglist.get(i)+
+                            Analyze.ToRegexHtml(Infolist.get(i),"<td>","</td>",2).get(2)+" "+//名字
+                            Analyze.ToRegexHtml(Infolist.get(i),"<td>","</td>",2).get(3)+" "+//性别
+                                    Analyze.ToRegexHtml(Infolist.get(i),"<td>","</td>",2).get(6)//专业
+                            );
                 }
             }
         }
