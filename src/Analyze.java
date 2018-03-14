@@ -83,13 +83,13 @@ public class Analyze {
             return stringBuffer.toString();
         }
     }
-    public static void loadImage(String URL1){
+    public static void loadImage(String URL1,String name){
         URL url = null;
         try {
             url = new URL(URL1);
             DataInputStream dis = new DataInputStream(url.openStream());
             int n  = URL1.indexOf("xh=");
-            String imageName = "/Users/mac/Documents/学生照片/"+URL1.substring(n+3);
+            String imageName = "/Users/mac/Documents/学生照片/"+name.substring(n+3);
 
             FileOutputStream fos = new FileOutputStream(new File(imageName));
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
